@@ -29,3 +29,13 @@ dependencyResolutionManagement {
 }
 
 include(":composeApp")
+include(":core")
+include(":core:data")
+include(":core:data:local")
+include(":core:data:remote")
+include(":core:data:repository")
+include(":core:data:mapper")
+include(":core:domain")
+include(":core:ui")
+include(":di")
+include(":foundation")
