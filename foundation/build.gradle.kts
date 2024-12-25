@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "ir.dorantech.foundation"
-    compileSdk = 34
+    compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
         minSdk = 29
