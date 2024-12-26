@@ -48,24 +48,12 @@ kotlin {
         val desktopMain by getting
 
         androidMain.dependencies {
-            api(compose.preview)
-            api(libs.androidx.activity.compose)
         }
         commonMain.dependencies {
-            api(compose.runtime)
-            api(compose.foundation)
-            api(compose.material)
-            api(compose.ui)
-            api(compose.components.resources)
-            api(compose.components.uiToolingPreview)
-            api(libs.androidx.lifecycle.viewmodel)
-            api(libs.androidx.lifecycle.runtime.compose)
-            api(libs.navigation.compose)
             api(libs.kotlinx.serialization.json)
         }
         desktopMain.dependencies {
             api(compose.desktop.currentOs)
-            api(libs.kotlinx.coroutines.swing)
         }
     }
 }

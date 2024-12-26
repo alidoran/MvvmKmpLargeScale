@@ -9,27 +9,6 @@ plugins {
     alias(libs.plugins.serialization)
 }
 
-kotlin {
-    androidTarget {
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_11)
-        }
-    }
-
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64()
-    ).forEach { iosTarget ->
-        iosTarget.binaries.framework {
-            baseName = "ComposeApp"
-            isStatic = true
-        }
-    }
-
-    jvm("desktop")
-}
-
 android {
     namespace = "ir.dorantech"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
@@ -58,8 +37,42 @@ android {
     }
 }
 
-dependencies {
-    implementation(project(":core"))
+kotlin {
+    androidTarget {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_11)
+        }
+    }
+
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64()
+    ).forEach { iosTarget ->
+        iosTarget.binaries.framework {
+            baseName = "ComposeApp"
+            isStatic = true
+        }
+    }
+
+    jvm("desktop")
+
+    sourceSets {
+        val desktopMain by getting
+
+        androidMain.dependencies {
+            implementation(project(":core"))
+            implementation(project(":core:ui"))
+        }
+        commonMain.dependencies {
+            implementation(project(":core"))
+            implementation(project(":core:ui"))
+        }
+        macosMain.dependencies {
+            implementation(project(":core"))
+            implementation(project(":core:ui"))
+        }
+    }
 }
 
 compose.desktop {
