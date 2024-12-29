@@ -45,19 +45,10 @@ kotlin {
     jvm("desktop")
 
     sourceSets {
-        val desktopMain by getting
-
-        androidMain.dependencies {
-        }
         commonMain.dependencies {
             api(libs.kotlinx.serialization.json)
-        }
-        desktopMain.dependencies {
-            api(compose.desktop.currentOs)
+            api(compose.runtime)
+            api(libs.kodein.di.framework.compose)
         }
     }
-}
-
-dependencies {
-    debugImplementation(compose.uiTooling)
 }
