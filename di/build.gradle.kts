@@ -57,9 +57,10 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(project(":core"))
-            implementation(project(":core:domain"))
+            implementation(project(":core:data:local"))
             implementation(project(":core:data:remote"))
             implementation(project(":core:data:repository"))
+            implementation(project(":core:domain"))
         }
     }
 }

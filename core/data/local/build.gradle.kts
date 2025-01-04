@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -6,6 +7,7 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.serialization)
+    alias(libs.plugins.sqldelight)
 }
 
 android {
@@ -36,8 +38,10 @@ android {
 
 kotlin {
     androidTarget {
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_11)
+        compilations.all {
+            kotlinOptions {
+                jvmTarget = "11"
+            }
         }
     }
 
@@ -55,9 +59,28 @@ kotlin {
     jvm("desktop")
 
     sourceSets {
+        val desktopMain by getting
+        androidMain.dependencies {
+            implementation(project(":core"))
+            implementation(libs.sqldelight.android)
+        }
         commonMain.dependencies {
             implementation(project(":core"))
+            api(libs.sqldelight.runtime)
+        }
+        iosMain.dependencies {
+            implementation(libs.sqldelight.native)
+        }
+        desktopMain.dependencies {
+            implementation(libs.sqldelight.driver)
         }
     }
 }
 
+sqldelight {
+    databases {
+        create("AppDatabase") {
+            packageName.set("ir.dorantech")
+        }
+    }
+}

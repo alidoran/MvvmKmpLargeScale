@@ -5,6 +5,12 @@ import org.kodein.di.DI
 import org.kodein.di.bindSingleton
 import org.kodein.di.instance
 
-val viewModelModule = DI.Module("viewModelModule") {
-    bindSingleton<UserViewModel> { UserViewModel(instance()) }
+object ViewModelModules {
+    private val viewModelModule = DI.Module("viewModelModule") {
+        bindSingleton<UserViewModel> { UserViewModel(instance()) }
+    }
+
+    val viewModelModules = DI.Module("viewModelModules") {
+        import(viewModelModule)
+    }
 }
