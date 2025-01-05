@@ -23,9 +23,9 @@ class UserRepositoryImpl(
     override suspend fun getUser(userId: String): DataResult<UserModel> {
         val localUser = database.userDatabaseQueries.selectUserById(userId).executeAsOneOrNull()
 
-        return if (localUser != null) {
+        return if (localUser != null)
             DataResult.Success(UserDto(localUser.id, localUser.name, localUser.email).toDomain())
-        } else {
+        else {
             val response = userService.getUser(UserRequest(userId))
 
             when (response.status) {
@@ -34,12 +34,12 @@ class UserRepositoryImpl(
                     database.userDatabaseQueries.insertUser(userDto.id, userDto.name, userDto.email)
                     DataResult.Success(userDto.toDomain())
                 }
-                HttpStatusCode.Unauthorized -> {
+
+                HttpStatusCode.Unauthorized ->
                     DataResult.Error(DataError.Unauthorized(response.body<Throwable>()))
-                }
-                else -> {
-                    DataResult.Error(DataError.Unknown(response.body<Throwable>()))
-                }
+
+                else -> DataResult.Error(DataError.Unknown(response.body<Throwable>()))
+
             }
         }
     }

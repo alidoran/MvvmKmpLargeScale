@@ -16,7 +16,6 @@ class UserServiceImpl(
         val response = client.post("${baseUrl.url}/user") {
             setJsonBody(userRequest)
         }
-        client.close()
         return response
     }
 }

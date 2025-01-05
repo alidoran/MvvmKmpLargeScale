@@ -27,7 +27,7 @@ class HttpClientProvider(
             }
 
             install(HttpTimeout) {
-                requestTimeoutMillis = 30000
+                requestTimeoutMillis = 3000
             }
 
             install(Logging) {
