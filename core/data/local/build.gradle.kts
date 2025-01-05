@@ -35,11 +35,7 @@ android {
 
 kotlin {
     androidTarget {
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = "11"
-            }
-        }
+        jvmToolchain(11)
     }
 
     listOf(
