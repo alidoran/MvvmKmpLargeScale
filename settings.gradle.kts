@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 rootProject.name = "MvvmKmpLargeScale"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
@@ -42,3 +44,4 @@ include(":foundation")
 include(":features")
 include(":features:feature1")
 include(":features:feature2")
+include(":core:component")
