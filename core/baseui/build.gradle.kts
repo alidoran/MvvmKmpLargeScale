@@ -31,6 +31,9 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+    buildFeatures {
+        compose = true
+    }
 }
 
 kotlin {
@@ -59,6 +62,7 @@ kotlin {
         androidMain.dependencies {
             api(compose.preview)
             api(libs.androidx.activity.compose)
+            implementation(libs.androidx.ui.tooling)
         }
 
         commonMain.dependencies {
