@@ -9,12 +9,12 @@ import ir.dorantech.domain.repository.UserRepository
 import ir.dorantech.domain.result.DataError
 import ir.dorantech.domain.result.DataResult
 import ir.dorantech.mapper.toDomain
-import ir.dorantech.remote.api.UserService
+import ir.dorantech.remote.api.UserDataSource
 import ir.dorantech.remote.dto.UserDto
 import ir.dorantech.remote.dto.UserRequest
 
 class UserRepositoryImpl(
-    private val userService: UserService,
+    private val userDataSource: UserDataSource,
     sqlDriver: SqlDriver,
 ) : UserRepository {
 
@@ -26,7 +26,7 @@ class UserRepositoryImpl(
         return if (localUser != null)
             DataResult.Success(UserDto(localUser.id, localUser.name, localUser.email).toDomain())
         else {
-            val response = userService.getUser(UserRequest(userId))
+            val response = userDataSource.getUser(UserRequest(userId))
 
             when (response.status) {
                 HttpStatusCode.OK -> {
