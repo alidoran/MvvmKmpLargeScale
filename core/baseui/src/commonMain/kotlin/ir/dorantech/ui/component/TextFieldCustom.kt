@@ -1,4 +1,4 @@
-package ir.dorantech.component.ui
+package ir.dorantech.ui.component
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Arrangement
