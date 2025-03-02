@@ -1,3 +1,4 @@
+```
 📦 MvvmKmpLargeScale  # Root project directory
 ├── 📂 composeApp [module]              # Compose application module for shared UI across platforms
 │   ├── 📂 androidMain                  # Android-specific implementation
@@ -43,3 +44,4 @@
 ├── 📂 foundation [module]              # Foundation module for shared utilities (e.g., logging, analytics)
 ├── 📂 iosApp [directory]               # iOS application directory (Xcode project integration)
 ├── 📂 gradle [directory]               # Gradle-related configuration files (e.g., build scripts, dependencies)
+```
